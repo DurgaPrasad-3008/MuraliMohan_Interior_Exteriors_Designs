@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DpTech-Murali Mohan Interior Works</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        function toggleMenu() {
+            document.getElementById("navLinks").classList.toggle("show");
+        }
+        lucide.createIcons(); // initialize icons
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 80px 40px;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+            z-index: 0;
+            pointer-events: none;
+            mix-blend-mode: multiply;
+            opacity: 0.6;
+        }
+
+        .content {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 1200px;
+            width: 100%;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-in-out;
+        }
+
+        .content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        p,
+        li {
+            margin-bottom: 10px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            flex: 1 1 calc(45% - 20px);
+            min-width: 280px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .image-right,
+        .image-left {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .image-right .text,
+        .image-left .text {
+            flex: 1;
+        }
+
+        .image-right img,
+        .image-left img {
+            flex: 1;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-left {
+            flex-direction: row-reverse;
+        }
+
+        .social-icons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 20px;
+            z-index: 999;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #25D366;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: #128C7E;
+        }
+
+        .social-icons .mail {
+            background-color: #007BFF;
+        }
+
+        .social-icons .mail:hover {
+            background-color: #0056b3;
+        }
+
+        @media screen and (max-width: 768px) {
+            section {
+                padding: 60px 20px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .card-grid {
+                gap: 15px;
+            }
+
+            .card {
+                flex: 1 1 calc(100% - 20px);
+            }
+
+            .image-right,
+            .image-left {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .image-right img,
+            .image-left img {
+                max-width: 100%;
+                margin-top: 20px;
+            }
+
+            footer {
+                padding: 40px 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .card-icon {
+                font-size: 1.5rem;
+            }
+
+            .card h4 {
+                font-size: 1rem;
+            }
+
+            footer {
+                font-size: 0.875rem;
+            }
+        }
+
+        .footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .footer h2 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .footer-icons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-icons a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-icons a:hover {
+            color: #60a5fa;
+        }
+
+        .footer-icons i {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            color: #9ca3af;
+            margin-top: 50px;
+            font-size: 14px;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            max-width: 600px;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            z-index: 1000;
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .logo {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            transition: background 0.3s;
+            border-radius: 4px;
+        }
+
+        .nav-links li a:hover {
+            background-color: #555;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger i {
+            color: white;
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: #333;
+                width: 100%;
+                flex-direction: column;
+                display: none;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links li {
+                text-align: center;
+                padding: 0.5rem 0;
+            }
+        }
+
+        .floating-contact {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .float-btn {
+            width: 48px;
+            height: 48px;
+            background-color: #25d366;
+            /* WhatsApp green */
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 22px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s;
+        }
+
+        .float-btn.email {
+            background-color: #ea4335;
+            /* Gmail red */
+        }
+
+        .float-btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contents = document.querySelectorAll('.content');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            contents.forEach(section => observer.observe(section));
+        });
+    </script>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">Interior_Works</div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <i data-lucide="menu"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero"><i data-lucide="home"></i> Home</a></li>
+                <li><a href="#painting"><i data-lucide="brush"></i> Painting</a></li>
+                <li><a href="#modular"><i data-lucide="layers"></i> Modular</a></li>
+                <li><a href="#process"><i data-lucide="workflow"></i> Process</a></li>
+                <li><a href="#whyus"><i data-lucide="star"></i> Why Us</a></li>
+                <li><a href="#testimonials"><i data-lucide="message-circle"></i> Testimonials</a></li>
+                <li><a href="#footer"><i data-lucide="phone"></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <section id="hero"
+        style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80');">
+        <div class="overlay"></div>
+        <div class="content hero-content">
+            <h1 class="hero-title">Murali Mohan Interior Works</h1>
+            <p class="hero-subtitle">
+                Transforming spaces with expert design and quality execution.<br>
+                Your trusted partner for beautiful interiors.
+            </p>
+        </div>
+    </section>
+
+    <section id="painting"
+        style="background-image: url('https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80');">
+        <div class="overlay"></div>
+        <div class="content image-right">
+            <div class="text">
+                <h3>Painting & Wall Decor</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">🎨</div>
+                        <h4>Color Palettes</h4>
+                        <p>Choose your mood</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🧱</div>
+                        <h4>Accent Walls</h4>
+                        <p>Textures, wallpapers</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🖌️</div>
+                        <h4>Durable Paint</h4>
+                        <p>Moisture-proof, washable</p>
+                    </div>
+                </div>
+            </div>
+            <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg" alt="Painting Wall Decor" />
+        </div>
+    </section>
+
+    <section id="modular"
+        style="background-image: url('https://cloudimage.homeonline.com/855x451/public/uploads/gallery/articles/Bestceiling-leadimg__749981724.jpg');">
+        <div class="overlay"></div>
+        <div class="content image-left">
+            <div class="text">
+                <h3>Modular Furniture</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">🛏️</div>
+                        <h4>Space-Saving Beds</h4>
+                        <p>Ideal for small homes</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🧳</div>
+                        <h4>Customized Wardrobes</h4>
+                        <p>Tailored to your space</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🍳</div>
+                        <h4>Trendy Kitchen Units</h4>
+                        <p>Modern, durable finishes</p>
+                    </div>
+                </div>
+            </div>
+            <img src="https://www.nobiliaindia.com/images/campaing/contemporary-kitchen-design-og.jpg"
+                alt="Modular Furniture" />
+        </div>
+    </section>
+
+    <section id="process"
+        style="background-image: url('https://media.licdn.com/dms/image/v2/D4D12AQG3MZnhc2DCcQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1685343954470?e=2147483647&v=beta&t=XYBPgMWBBy3dwRDcZHXtKeluV4TlOilRnhKDp203W68');">
+        <div class="overlay"></div>
+        <div class="content image-right">
+            <div class="text">
+                <h3>Our Work Process</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">📝</div>
+                        <h4>Consultation</h4>
+                        <p>Requirement gathering</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📏</div>
+                        <h4>Site Visit</h4>
+                        <p>Measurements</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">💡</div>
+                        <h4>Design & Quote</h4>
+                        <p>Presentation, quotation</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🎨</div>
+                        <h4>Material Selection</h4>
+                        <p>Choose finishes</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🔍</div>
+                        <h4>Execution</h4>
+                        <p>Quality checks</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📦</div>
+                        <h4>Handover</h4>
+                        <p>Final delivery</p>
+                    </div>
+                </div>
+            </div>
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBSEapZ6nNl6-l6CxfagGHzDI6PGGvwBx2WvF97Rc6X4yl4K9AxjV9Srh_r1u7gyM-faxyiPKRDdSdeljzHy7fBOKnmzOVkTyuPz8_-E9CGUKYip7eQ8EqF_aEOHhxWItn993pIfJrhRA/s640/interior-designer.PNG"
+                alt="Work Process" />
+        </div>
+    </section>
+
+    <section id="whyus"
+        style="background-image: url('https://www.nerolac.com/sites/default/files/2023-07/circular-pop-ceiling-wall-design.webp');">
+        <div class="overlay"></div>
+        <div class="content image-left">
+            <div class="text">
+                <h3>Why Choose Us?</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">👷‍♂️</div>
+                        <h4>Experienced Team</h4>
+                        <p>Skilled designers</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🏗️</div>
+                        <h4>Quality Materials</h4>
+                        <p>Trusted brands</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">💰</div>
+                        <h4>Transparent Pricing</h4>
+                        <p>No hidden costs</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🎁</div>
+                        <h4>Special Offer</h4>
+                        <p>Kitchen baskets or chimney free</p>
+                    </div>
+                </div>
+            </div>
+            <img src="https://i.pinimg.com/564x/80/0a/c0/800ac0ad32e58c20163d4579fc22128b.jpg" alt="Why Choose Us" />
+        </div>
+    </section>
+
+    <section id="testimonials"
+        style="background-image: url('https://thumbs.dreamstime.com/b/students-holding-thumbs-up-21284194.jpg');">
+        <div class="overlay"></div>
+        <div class="content image-right">
+            <div class="text">
+                <h3>Client Testimonials</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">😊</div>
+                        <h4>Happy Clients</h4>
+                        <p>Positive feedback</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">✅</div>
+                        <h4>Quality Assurance</h4>
+                        <p>Consistent satisfaction</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📣</div>
+                        <h4>Word of Mouth</h4>
+                        <p>Referrals drive business</p>
+                    </div>
+                </div>
+
+            </div>
+            <img src="https://totallychocolate.com/wp-content/uploads/2024/11/4-PromotionCongrats-1.jpg"
+                alt="Client Testimonial" />
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+        <h2>Connect With Us</h2>
+        <div class="footer-icons">
+            <a href="tel:+919849235779">
+                <i class="fas fa-phone-alt"></i><br>+91 9849235779
+            </a>
+            <a href="https://wa.me/919849235779" target="_blank">
+                <i class="fab fa-whatsapp"></i><br>WhatsApp
+            </a>
+            <a href="mailto:muralimohan759@gmail.com">
+                <i class="fas fa-envelope"></i><br>muralimohan759@gmail.com
+            </a>
+            <a href="https://instagram.com/murali_mohan_interiors" target="_blank">
+                <i class="fab fa-instagram"></i><br>Interior-D esigning
+            </a>
+
+        </div>
+        <div class="footer-bottom">
+            Molding Homes, Beautifying Spaces – POP Interior Solutions.<br>
+
+        </div>
+    </footer>
+
+    <!-- Floating Contact Buttons -->
+    <div class="floating-contact">
+        <a href="https://wa.me/919849235779" target="_blank" class="float-btn whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="mailto:muralimohan759@gmail.com" class="float-btn email">
+            <i class="fas fa-envelope"></i>
+        </a>
+    </div>
+
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+
+</html>
